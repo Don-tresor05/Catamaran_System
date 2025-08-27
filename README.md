@@ -1,69 +1,96 @@
-# React + TypeScript + Vite
+## Catamaran System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript application bootstrapped with Vite, styled with Tailwind CSS, and linted with ESLint. This README explains local setup, development workflow, and build commands.
 
-Currently, two official plugins are available:
+### Tech stack
+- **Build tool**: Vite 7
+- **Framework**: React 19 (with Fast Refresh)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 3
+- **Linting**: ESLint (TypeScript + React hooks + React Refresh configs)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+- **Node.js**: 18 or newer (LTS recommended)
+- **npm**: 9+ (or use pnpm/yarn if you prefer and have a lockfile for it)
 
-## Expanding the ESLint configuration
+### Getting started
+1. Install dependencies
+```bash
+npm install
+```
+2. Start the development server (with HMR)
+```bash
+npm run dev
+```
+3. Open the URL printed in the terminal (typically `http://localhost:5173`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Available scripts
+- **dev**: run the Vite dev server
+```bash
+npm run dev
+```
+- **build**: type-check and create a production build in `dist/`
+```bash
+npm run build
+```
+- **preview**: serve the production build locally
+```bash
+npm run preview
+```
+- **lint**: run ESLint on the project
+```bash
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Project structure
+```text
+.
+├─ index.html
+├─ public/              # Static assets copied as-is
+├─ src/
+│  ├─ main.tsx         # App bootstrap (React root)
+│  ├─ App.tsx          # Root component
+│  ├─ App.css          # Example styles
+│  ├─ index.css        # Tailwind base/imports
+│  └─ assets/          # Local images/icons/etc.
+├─ vite.config.ts       # Vite configuration
+├─ tailwind.config.js   # Tailwind configuration
+├─ tsconfig*.json       # TypeScript configs
+├─ eslint.config.js     # ESLint flat config
+├─ package.json
+└─ package-lock.json
 ```
+
+### Styling with Tailwind CSS
+- Tailwind is configured via `tailwind.config.js` with `content` scanning for `index.html` and all files in `src/**/*.{js,ts,jsx,tsx}`.
+- Global Tailwind layers are imported in `src/index.css`.
+- Use utility classes directly in your JSX, e.g. `<div className="p-4 text-gray-700">`.
+
+### Linting
+ESLint is configured in `eslint.config.js` with TypeScript and React plugin presets. Run:
+```bash
+npm run lint
+```
+
+### Building for production
+Create an optimized build to `dist/`:
+```bash
+npm run build
+```
+Optionally preview the built app locally:
+```bash
+npm run preview
+```
+
+### Notes for Windows
+- This project works fine in Command Prompt, PowerShell, or Git Bash.
+- If your path contains spaces (e.g., `Don's Stuffs`), npm scripts still work as shown above.
+
+### Configuration references
+- Vite config: `vite.config.ts`
+- Tailwind config: `tailwind.config.js`
+- TypeScript configs: `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`
+- ESLint config: `eslint.config.js`
+
+### License
+Proprietary – internal project. Update this section if a different license applies.
