@@ -5,7 +5,7 @@ const Homepage: React.FC = () => {
   return (
     <div>
       <Navbar />
-      {/* Page content below navbar */}
+      
     </div>
   );
 };
