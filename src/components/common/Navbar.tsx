@@ -1,35 +1,60 @@
 import React from 'react';
+import { ChevronDown } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   return (
-    <header className="w-full bg-black py-6 px-8">
-      <nav className="w-full flex items-center justify-between gap-8">
-        {/* Logo */}
-        <div className="text-white text-2xl font-bold tracking-wider whitespace-nowrap">
-          DAMIEN
-        </div>
+    <header style={{ 
+      width: '100vw', 
+      backgroundColor: '#000000', 
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      right: '0',
+      margin: '0', 
+      padding: '0',
+      zIndex: '1000'
+    }}>
+      {/* Top border line */}
+      <div style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '1px', backgroundColor: '#374151' }}></div>
+      
+      <div style={{ padding: '1.5rem 2rem', width: '100%', margin: '0' }}>
+        <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+          {/* Left Side - Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', minWidth: '120px' }}>
+            <div style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '0.1em' }}>
+              DAMIEN
+            </div>
+          </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex items-center gap-2 bg-[#1a1a1a] rounded-full p-2 flex-shrink-0">
-          <button className="px-6 py-2.5 bg-[#2a2a2a] text-white rounded-full font-medium text-sm transition-all hover:bg-[#3a3a3a] whitespace-nowrap">
-            Home
-          </button>
-          <button className="px-6 py-2.5 text-gray-400 rounded-full font-medium text-sm transition-all hover:text-white hover:bg-[#2a2a2a] whitespace-nowrap">
-            About Me
-          </button>
-          <button className="px-6 py-2.5 text-gray-400 rounded-full font-medium text-sm transition-all hover:text-white hover:bg-[#2a2a2a] whitespace-nowrap">
-            Portfolio
-          </button>
-          <button className="px-6 py-2.5 text-gray-400 rounded-full font-medium text-sm transition-all hover:text-white hover:bg-[#2a2a2a] whitespace-nowrap">
-            Services
-          </button>
-        </div>
+          {/* Center - Navigation Container */}
+          <div style={{ display: 'flex', alignItems: 'center', flex: '1', justifyContent: 'center' }}>
+            <div style={{ backgroundColor: '#1f2937', borderRadius: '9999px', padding: '0.25rem 0.5rem', display: 'flex', alignItems: 'center' }}>
+              <button style={{ padding: '0.5rem 1rem', backgroundColor: '#374151', color: 'white', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer' }}>
+                Home
+              </button>
+              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
+                About Me
+              </button>
+              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
+                Portfolio
+              </button>
+              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
+                Services
+              </button>
+            </div>
+          </div>
 
-        {/* Contact Me Button */}
-        <button className="px-6 py-2.5 bg-[#2a2a2a] text-white rounded-full font-medium text-sm border border-gray-800 transition-all hover:bg-[#3a3a3a] whitespace-nowrap flex-shrink-0">
-          Contact Me
-        </button>
-      </nav>
+          {/* Right Side - Contact Me */}
+          <div style={{ display: 'flex', alignItems: 'center', minWidth: '120px', justifyContent: 'flex-end' }}>
+            <button style={{ padding: '0.625rem 1.5rem', backgroundColor: '#374151', color: 'white', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: '500', border: 'none', cursor: 'pointer' }}>
+              Contact Me
+            </button>
+          </div>
+        </nav>
+      </div>
+      
+      {/* Bottom border line */}
+      <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', width: '100vw', height: '1px', backgroundColor: '#374151' }}></div>
     </header>
   );
 };
