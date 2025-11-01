@@ -1,24 +1,41 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+// import { ChevronDown } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   return (
     <header style={{ 
       width: '100vw', 
-      backgroundColor: '#000000', 
+      backgroundColor: 'transparent', 
       position: 'fixed',
       top: '0',
       left: '0',
       right: '0',
       margin: '0', 
       padding: '0',
-      zIndex: '1000'
+			zIndex: '1000'
     }}>
       {/* Top border line */}
       <div style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '1px', backgroundColor: '#374151' }}></div>
       
-      <div style={{ padding: '1.5rem 2rem', width: '100%', margin: '0' }}>
-        <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+			<div style={{ padding: '0', width: '100%', margin: '0' }}>
+				<nav
+					style={{
+						boxSizing: 'border-box',
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+						padding: '20px 18px',
+						gap: '433px',
+						isolation: 'isolate',
+						width: '1316px',
+						height: '89px',
+						borderLeft: '2px solid #1C1C21',
+						borderRight: '2px solid #1C1C21',
+						margin: '0 auto',
+						position: 'relative'
+					}}
+				>
           {/* Left Side - Logo */}
           <div style={{ display: 'flex', alignItems: 'center', minWidth: '120px' }}>
             <div style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '0.1em' }}>
@@ -26,30 +43,165 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Center - Navigation Container */}
-          <div style={{ display: 'flex', alignItems: 'center', flex: '1', justifyContent: 'center' }}>
-            <div style={{ backgroundColor: '#1f2937', borderRadius: '9999px', padding: '0.25rem 0.5rem', display: 'flex', alignItems: 'center' }}>
-              <button style={{ padding: '0.5rem 1rem', backgroundColor: '#374151', color: 'white', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer' }}>
-                Home
-              </button>
-              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
-                About Me
-              </button>
-              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
-                Portfolio
-              </button>
-              <button style={{ padding: '0.5rem 1rem', color: '#9ca3af', fontSize: '0.875rem', fontWeight: '500', borderRadius: '9999px', margin: '0', border: 'none', cursor: 'pointer', backgroundColor: 'transparent' }}>
-                Services
-              </button>
-            </div>
-          </div>
-
           {/* Right Side - Contact Me */}
-          <div style={{ display: 'flex', alignItems: 'center', minWidth: '120px', justifyContent: 'flex-end' }}>
-            <button style={{ padding: '0.625rem 1.5rem', backgroundColor: '#374151', color: 'white', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: '500', border: 'none', cursor: 'pointer' }}>
-              Contact Me
-            </button>
-          </div>
+					<div style={{ display: 'flex', alignItems: 'center', minWidth: '120px', justifyContent: 'flex-end' }}>
+						<button
+							style={{
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+								padding: '14px 20px',
+								gap: '10px',
+								margin: '0 auto',
+								width: '118px',
+								height: '49px',
+								background: '#1C1C21',
+								borderRadius: '8px',
+								color: '#FFFFFF',
+								fontFamily: 'Manrope',
+								fontStyle: 'normal',
+								fontWeight: 500,
+								fontSize: '14px',
+								lineHeight: '150%',
+								border: 'none',
+								cursor: 'pointer',
+								zIndex: 1
+							}}
+						>
+							Contact Me
+						</button>
+					</div>
+
+					{/* Bottom-aligned Buttons Container */}
+					<div
+						style={{
+							position: 'absolute',
+							left: '50%',
+							transform: 'translateX(-50%)',
+							bottom: '-0rem',
+							width: '476px',
+							height: '69px',
+							display: 'flex',
+							flexDirection: 'row',
+							alignItems: 'center',
+							padding: '0px',
+							boxSizing: 'border-box',
+							borderWidth: '1px 1px 0px 1px',
+							borderStyle: 'solid',
+							borderColor: '#1C1C21',
+							borderRadius: '10px 10px 0px 0px',
+							background: '#0b0b0d',
+							zIndex: 2
+						}}
+					>
+						{/* Home (active) */}
+						<button
+							style={{
+								width: '119px',
+								height: '69px',
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+								justifyContent: 'center',
+								gap: '10px',
+								padding: '24px 40px',
+								boxSizing: 'border-box',
+								background: '#131316',
+								border: '1px solid #1C1C21',
+								color: '#FFFFFF',
+								fontFamily: 'Manrope',
+								fontStyle: 'normal',
+								fontWeight: 500,
+								fontSize: '14px',
+								lineHeight: '150%',
+								cursor: 'pointer',
+								outline: 'none'
+							}}
+						>
+							Home
+						</button>
+						{/* About Me */}
+						<button
+							style={{
+								width: '200px',
+								height: '69px',
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+								justifyContent: 'center',
+								gap: '10px',
+								padding: '24px 30px',
+								borderRight: '1px solid #1C1C21',
+								background: 'transparent',
+								color: '#AFB0B6',
+								fontFamily: 'Manrope',
+								fontStyle: 'normal',
+								fontWeight: 500,
+								fontSize: '14px',
+								lineHeight: '150%',
+								cursor: 'pointer',
+								outline: 'none',
+								borderTop: 'none',
+								borderBottom: 'none',
+								borderLeft: 'none'
+							}}
+						>
+							About Me
+						</button>
+						{/* Portfolio */}
+						<button
+							style={{
+								width: '117px',
+								height: '69px',
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+								justifyContent: 'center',
+								gap: '10px',
+								padding: '24px 30px',
+								borderRight: '1px solid #1C1C21',
+								background: 'transparent',
+								color: '#AFB0B6',
+								fontFamily: 'Manrope',
+								fontStyle: 'normal',
+								fontWeight: 500,
+								fontSize: '14px',
+								lineHeight: '150%',
+								cursor: 'pointer',
+								outline: 'none',
+								borderTop: 'none',
+								borderBottom: 'none',
+								borderLeft: 'none'
+							}}
+						>
+							Portfolio
+						</button>
+						{/* Services */}
+						<button
+							style={{
+								width: '117px',
+								height: '69px',
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+								justifyContent: 'center',
+								gap: '10px',
+								padding: '24px 30px',
+								background: 'transparent',
+								color: '#AFB0B6',
+								fontFamily: 'Manrope',
+								fontStyle: 'normal',
+								fontWeight: 500,
+								fontSize: '14px',
+								lineHeight: '150%',
+								cursor: 'pointer',
+								outline: 'none',
+								border: 'none'
+							}}
+						>
+							Services
+						</button>
+					</div>
         </nav>
       </div>
       
