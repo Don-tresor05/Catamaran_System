@@ -4,7 +4,7 @@ import HeroSection from '../components/landingsections/HeroSection';
 
 const Homepage: React.FC = () => {
   return (
-    <div style={{ backgroundColor: '#131316', minHeight: '100vh', paddingTop: '80px' }}>
+    <div style={{ backgroundColor: '#000000', minHeight: '100vh', paddingTop: '80px' }}>
       <Navbar />
       <HeroSection />
       

@@ -5,14 +5,14 @@ const Navbar: React.FC = () => {
   return (
     <header style={{ 
       width: '100vw', 
-      backgroundColor: 'transparent', 
+      backgroundColor: '#000000', 
       position: 'fixed',
       top: '0',
       left: '0',
       right: '0',
       margin: '0', 
       padding: '0',
-			zIndex: '1000'
+     	zIndex: '1000'
     }}>
       {/* Top border line */}
       <div style={{ position: 'absolute', top: '0', left: '0', right: '0', width: '100vw', height: '1px', backgroundColor: '#374151' }}></div>
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
 							position: 'absolute',
 							left: '50%',
 							transform: 'translateX(-50%)',
-							bottom: '-0rem',
+							bottom: '0rem',
 							width: '476px',
 							height: '69px',
 							display: 'flex',
@@ -206,7 +206,7 @@ const Navbar: React.FC = () => {
       </div>
       
       {/* Bottom border line */}
-      <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', width: '100vw', height: '1px', backgroundColor: '#374151' }}></div>
+      <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)', width: '90vw', height: '4px', backgroundColor: '#1C1C21' }}></div>
     </header>
   );
 };
