@@ -1,14 +1,23 @@
-import React from 'react';
-import Homepage from './pages/Homepage'
-import './App.css';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import Services from './components/Services';
+import Portfolio from './components/Portfolio';
+import FAQ from './components/FAQ';
+import Testimonials from './components/Testimonials';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#131316] text-white">
-      <Homepage />
-      <main className="pt-20">
-        {/* Your main content will go here */}
-      </main>
+    <div className="w-full min-h-screen bg-black">
+      <Header />
+      <Hero />
+      <About />
+      <Services />
+      <Portfolio />
+      <FAQ />
+      <Testimonials />
+      <Footer />
     </div>
   );
 }
