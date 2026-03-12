@@ -1,121 +1,129 @@
-import { Facebook, Twitter, Linkedin, Plus } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function About() {
-  const [showIntro, setShowIntro] = useState(false);
-  const [showContact, setShowContact] = useState(false);
+  const stats = [
+    { value: '15+', label: 'Years In Business' },
+    { value: '500+', label: 'Happy Clients' },
+    { value: '10+', label: 'Photography Awards' },
+    { value: '05+', label: 'International Shoots' },
+    { value: '10,000+', label: 'Social Media Followers' },
+    { value: '90%', label: 'Client Retention Rate' },
+  ];
+
+  const timeline = [
+    {
+      year: '2005',
+      text:
+        'Started exploring visual storytelling, capturing early projects and building a personal style.',
+    },
+    {
+      year: '2010',
+      text:
+        'Formalized training in photography and refined lighting, composition, and narrative direction.',
+    },
+    {
+      year: '2012',
+      text:
+        'First solo exhibition, showcasing portraits and editorial work across local venues.',
+    },
+    {
+      year: '2015',
+      text:
+        'Launched the studio, offering portrait, event, and commercial photography services.',
+    },
+    {
+      year: '2017',
+      text:
+        'Expanded internationally with travel assignments and destination projects.',
+    },
+    {
+      year: '2020',
+      text:
+        'Recognized with multiple awards for creative direction and visual storytelling.',
+    },
+  ];
 
   return (
-    <section id="about" className="min-h-screen bg-black text-white py-20">
-      <div className="container mx-auto px-6">
+    <section
+      id="about"
+      className="min-h-screen bg-neutral-900 text-white py-16 md:py-20"
+    >
+      <div className="w-full px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-start mb-12">
-            <div>
-              <p className="text-gray-400 text-sm tracking-widest mb-2">
-                ABOUT
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold">I AM MARTIN</h2>
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <div>
+                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                  ABOUT
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+                  ABOUT MARTIN MUNYAMPETA
+                </h2>
+              </div>
+              <button className="text-white/80 hover:text-white flex items-center gap-2 transition-colors">
+                Explore More <ArrowUpRight className="w-4 h-4" />
+              </button>
             </div>
-            <button className="text-white/80 hover:text-white flex items-center gap-2 transition-colors">
-              Know More →
-            </button>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="relative">
-              <div className="absolute -left-4 -top-4 w-32 h-32 border-l-4 border-t-4 border-white/20 rounded-tl-[100px]"></div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-3"
+                >
+                  <p className="text-lg font-semibold">{stat.value}</p>
+                  <p className="text-xs text-gray-400">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative rounded-3xl overflow-hidden bg-white/5 border border-white/10">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
               <img
                 src="/assets/about/about-1.jpg"
-                alt="Damien Braun"
-                className="w-full rounded-2xl"
+                alt="Martin Munyampeta portrait"
+                className="w-full h-[260px] sm:h-[360px] md:h-[420px] object-cover"
               />
+              <div className="absolute bottom-4 right-4 text-xs text-white/70">
+                Scroll down to see my journey
+              </div>
             </div>
 
-            <div className="space-y-8">
-              <div>
-                <button
-                  onClick={() => setShowIntro(!showIntro)}
-                  className="flex items-center gap-3 text-xl font-semibold mb-4 hover:text-blue-400 transition-colors"
-                >
-                  <Plus
-                    className={`w-5 h-5 transition-transform ${
-                      showIntro ? 'rotate-45' : ''
-                    }`}
-                  />
-                  Introduction
-                </button>
-                {showIntro && (
-                  <p className="text-gray-400 leading-relaxed ml-8">
-                    My journey as a photographer has been a lifelong quest to
-                    capture the extraordinary in the ordinary. To freeze fleeting
-                    moments in time, and to share the world's beauty as I see it.
-                    Based in the enchanting landscapes of the USA, I find
-                    inspiration in every corner of this diverse and vibrant
-                    country. Join me as we embark on a visual odyssey, where each
-                    photograph tells a story, and every frame is a piece of my
-                    heart.
-                  </p>
-                )}
+            <div className="grid md:grid-cols-12 gap-8">
+              <div className="md:col-span-5">
+                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                  MY BIOGRAPHY
+                </p>
+                <h3 className="text-2xl font-semibold mb-4">THE STORY</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  My journey into photography started with a curiosity for
+                  light and the stories hidden in everyday moments. Over the
+                  years, I have focused on portraits and editorial work that
+                  feels honest, cinematic, and timeless. Each session is built
+                  on trust, direction, and a collaborative energy that brings
+                  out the most authentic version of the subject.
+                </p>
               </div>
-
-              <div>
-                <button
-                  onClick={() => setShowContact(!showContact)}
-                  className="flex items-center gap-3 text-xl font-semibold mb-4 hover:text-blue-400 transition-colors"
-                >
-                  <Plus
-                    className={`w-5 h-5 transition-transform ${
-                      showContact ? 'rotate-45' : ''
-                    }`}
-                  />
-                  Contact Information
-                </button>
-                {showContact && (
-                  <div className="ml-8 space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <p className="text-gray-400 text-sm mb-2">Email</p>
-                        <p className="text-white">catamaran@gmail.com</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm mb-2">
-                          Phone Number
-                        </p>
-                        <p className="text-white">+00 000000000</p>
-                      </div>
+              <div className="md:col-span-7">
+                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                  JOURNEY
+                </p>
+                <h3 className="text-2xl font-semibold mb-4">
+                  MARTIN'S JOURNEY - A TIMELINE
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {timeline.map((item) => (
+                    <div
+                      key={item.year}
+                      className="rounded-2xl border border-white/10 bg-black/40 p-4"
+                    >
+                      <p className="text-sm text-gray-400 mb-2">
+                        YEAR - {item.year}
+                      </p>
+                      <p className="text-sm text-gray-300">{item.text}</p>
                     </div>
-
-                    <div className="flex gap-4">
-                      <a
-                        href="#"
-                        className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
-                      >
-                        <Facebook className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="#"
-                        className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
-                      >
-                        <Twitter className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="#"
-                        className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
-                        Let's Work
-                      </button>
-                      <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
-                        Download CV
-                      </button>
-                    </div>
-                  </div>
-                )}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
