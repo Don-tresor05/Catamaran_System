@@ -49,9 +49,9 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="min-h-screen bg-black text-white py-20">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+    <section className="min-h-screen bg-black text-white py-16 md:py-20">
+      <div className="w-full px-4 sm:px-6">
+        <div className="w-full">
           <div className="mb-12">
             <p className="text-gray-400 text-sm tracking-widest mb-2">FAQ'S</p>
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -69,9 +69,9 @@ export default function FAQ() {
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
-                  className="w-full text-left p-6 flex justify-between items-start hover:bg-white/10 transition-colors"
+                  className="w-full text-left p-4 sm:p-6 flex justify-between items-start hover:bg-white/10 transition-colors"
                 >
-                  <span className="text-sm font-medium pr-4">
+                  <span className="text-sm sm:text-base font-medium pr-4">
                     {faq.question}
                   </span>
                   <ChevronDown
