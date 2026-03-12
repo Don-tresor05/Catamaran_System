@@ -39,21 +39,21 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-black text-white pt-20">
-      <div className="container mx-auto px-6 py-20">
-        <div className="max-w-6xl mx-auto">
+    <section id="home" className="min-h-screen bg-black text-white pt-20 md:pt-24">
+      <div className="w-full px-4 sm:px-6 py-16 md:py-20">
+        <div className="w-full">
           <p className="text-gray-400 text-sm tracking-widest mb-4">
             STUNNING PHOTOGRAPHY BY
           </p>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-20">
-            <div className="flex items-center gap-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 md:mb-0">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 md:mb-20">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2 sm:mb-0">
               MARTIN MUNYAMPETA
             </h1>
               <span className="text-2xl md:text-4xl font-light">LET'S</span>
               <button
                 onClick={scrollToContact}
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 sm:p-4 transition-colors"
               >
                 <ArrowUpRight className="w-6 h-6" />
               </button>
@@ -80,7 +80,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full auto-rows-[200px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full auto-rows-[160px] sm:auto-rows-[200px]">
             <div className="col-span-1 row-span-2">
               <img
                 src="/assets/hero/hero-1.jpg"
