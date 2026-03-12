@@ -45,10 +45,10 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-black text-white py-20">
-      <div className="container mx-auto px-6">
+    <section className="bg-neutral-900 text-white py-16 md:py-20">
+      <div className="w-full px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-start mb-12">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12">
             <div>
               <p className="text-gray-400 text-sm tracking-widest mb-2">
                 TESTIMONIALS
@@ -59,20 +59,20 @@ export default function Testimonials() {
               <p className="text-gray-400">Total Reviews</p>
               <p className="text-4xl font-bold">323</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors">
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors">
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <button className="text-white/80 hover:text-white ml-4 transition-colors">
+              <button className="text-white/80 hover:text-white md:ml-4 transition-colors">
                 View All Testimonials →
               </button>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
