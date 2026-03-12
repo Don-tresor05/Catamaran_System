@@ -46,10 +46,10 @@ export default function Hero() {
             STUNNING PHOTOGRAPHY BY
           </p>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-20">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 md:mb-0">
-              MARTIN MUNYAMPETA
-            </h1>
             <div className="flex items-center gap-4">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 md:mb-0">
+              MARTIN A.k.A(SIMBA🦁)
+            </h1>
               <span className="text-2xl md:text-4xl font-light">LET'S</span>
               <button
                 onClick={scrollToContact}

@@ -209,7 +209,7 @@ export default function Footer() {
             </div>
 
             <p className="text-gray-400 text-sm">
-              © 2024 Damien Braun Photography. All rights reserved.
+              © 2026 CATAMARAN STUDIO Photography. All rights reserved.
             </p>
           </div>
         </div>
