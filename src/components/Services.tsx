@@ -9,10 +9,10 @@ const highlights = [
 
 export default function Services() {
   return (
-    <section id="services" className="min-h-screen bg-black text-white py-20">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-start mb-12">
+    <section id="services" className="min-h-screen bg-black text-white py-16 md:py-20">
+      <div className="w-full px-4 sm:px-6">
+        <div className="w-full">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12">
             <div>
               <p className="text-gray-400 text-sm tracking-widest mb-2">
                 SERVICES
@@ -21,20 +21,20 @@ export default function Services() {
                 MY PHOTOGRAPHY SERVICES
               </h2>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors">
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors">
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <button className="text-white/80 hover:text-white ml-4 transition-colors">
+              <button className="text-white/80 hover:text-white md:ml-4 transition-colors">
                 View All Services →
               </button>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <h3 className="text-2xl font-bold">EVENTS</h3>
