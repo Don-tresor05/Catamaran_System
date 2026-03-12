@@ -48,7 +48,7 @@ export default function Hero() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-20">
             <div className="flex items-center gap-4">
             <h1 className="text-5xl md:text-7xl font-bold mb-8 md:mb-0">
-              MARTIN A.k.A(SIMBA🦁)
+              MARTIN MUNYAMPETA
             </h1>
               <span className="text-2xl md:text-4xl font-light">LET'S</span>
               <button
