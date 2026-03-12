@@ -65,9 +65,9 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-black text-white pt-20 pb-8">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+    <footer id="contact" className="bg-black text-white pt-16 md:pt-20 pb-8">
+      <div className="w-full px-4 sm:px-6">
+        <div className="w-full">
           <div className="text-center mb-12">
             <div className="text-[120px] md:text-[200px] font-bold opacity-10 leading-none">
               CATAMARAN STUDIO
@@ -108,7 +108,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12">
             <div>
               <h3 className="font-semibold mb-4">HOME</h3>
               <ul className="space-y-2">
@@ -171,7 +171,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10">
             <div className="flex gap-4 mb-4 md:mb-0">
               <a
                 href="#"
