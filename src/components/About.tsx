@@ -26,7 +26,7 @@ export default function About() {
               <div className="absolute -left-4 -top-4 w-32 h-32 border-l-4 border-t-4 border-white/20 rounded-tl-[100px]"></div>
               <img
                 src="/assets/about/about-1.jpg"
-                alt="Damien Braun"
+                alt="Martin Munyampeta"
                 className="w-full rounded-2xl"
               />
             </div>
@@ -49,7 +49,7 @@ export default function About() {
                     My journey as a photographer has been a lifelong quest to
                     capture the extraordinary in the ordinary. To freeze fleeting
                     moments in time, and to share the world's beauty as I see it.
-                    Based in the enchanting landscapes of the USA, I find
+                    Based in the enchanting landscapes of the RWANDA, I find
                     inspiration in every corner of this diverse and vibrant
                     country. Join me as we embark on a visual odyssey, where each
                     photograph tells a story, and every frame is a piece of my
@@ -81,7 +81,7 @@ export default function About() {
                         <p className="text-gray-400 text-sm mb-2">
                           Phone Number
                         </p>
-                        <p className="text-white">+00 000000000</p>
+                        <p className="text-white">+250 788 217 387</p>
                       </div>
                     </div>
 
@@ -110,9 +110,9 @@ export default function About() {
                       <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
                         Let's Work
                       </button>
-                      <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
+                      {/* <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
                         Download CV
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 )}
