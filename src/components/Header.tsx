@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,14 +36,6 @@ export default function Header() {
     };
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
   const linkClass = isScrolled
     ? 'text-gray-300 font-bold hover:text-white'
     : 'text-white/80 hover:text-white';
@@ -59,49 +52,37 @@ export default function Header() {
     >
       <nav className={`mx-auto max-w-6xl px-6 transition-all duration-500 ${
         isScrolled 
-          ? 'w-[92%] md:w-[920px] bg-transparent backdrop-blur-sm rounded-full shadow-none py-2.5 border border-white/10' 
+          ? 'w-[92%] md:w-[920px] bg-black backdrop-blur-sm rounded-full shadow-none py-2.5 border border-white/50' 
           : 'w-full py-4 bg-black/80 backdrop-blur-sm'
       }`}>
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img
               src="/assets/logo/logo2.png"
               alt="Catamaran Studio"
               className="h-14 w-auto"
             />
-          </div>
+          </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('home')}
-              className={`${linkClass} transition-colors`}
-            >
+            <Link to="/" className={`${linkClass} transition-colors`}>
               Home
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`${linkClass} transition-colors`}
-            >
+            </Link>
+            <Link to="/about" className={`${linkClass} transition-colors`}>
               About Me
-            </button>
-            <button
-              onClick={() => scrollToSection('portfolio')}
-              className={`${linkClass} transition-colors`}
-            >
+            </Link>
+            <Link to="/portfolio" className={`${linkClass} transition-colors`}>
               Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection('services')}
-              className={`${linkClass} transition-colors`}
-            >
+            </Link>
+            <Link to="/services" className={`${linkClass} transition-colors`}>
               Services
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              to="/contact"
               className={`${ctaClass} px-6 py-2 rounded-lg transition-colors`}
             >
               Contact Me
-            </button>
+            </Link>
           </div>
 
           <button
@@ -128,36 +109,41 @@ export default function Header() {
 
         {isMenuOpen && (
           <div className="md:hidden mt-4 space-y-4">
-            <button
-              onClick={() => scrollToSection('home')}
+            <Link
+              to="/"
               className="block text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link
+              to="/about"
               className="block text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
               About Me
-            </button>
-            <button
-              onClick={() => scrollToSection('portfolio')}
+            </Link>
+            <Link
+              to="/portfolio"
               className="block text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
               Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection('services')}
+            </Link>
+            <Link
+              to="/services"
               className="block text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
               Services
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              to="/contact"
               className="block text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
               Contact Me
-            </button>
+            </Link>
           </div>
         )}
       </nav>
