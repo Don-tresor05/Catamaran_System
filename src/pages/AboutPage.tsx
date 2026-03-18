@@ -49,7 +49,7 @@ export default function AboutPage() {
     <div className="w-full min-h-screen bg-black text-white">
       <section className="bg-neutral-950 text-white pt-24 pb-16 md:pb-20">
         <div className="w-full px-4 sm:px-6">
-          <div className="w-full flex flex-col gap-8">
+          <div className="max-w-7xl mx-auto flex flex-col gap-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
                 <p className="text-gray-400 text-sm tracking-widest mb-2">
@@ -137,7 +137,7 @@ export default function AboutPage() {
       </section>
       <section className="bg-neutral-950">
         <div className="w-full px-4 sm:px-6">
-          <div className="w-full">
+          <div className="max-w-7xl mx-auto">
             <Testimonials />
           </div>
         </div>

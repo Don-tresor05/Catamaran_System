@@ -41,7 +41,7 @@ export default function Hero() {
   return (
     <section id="home" className="min-h-screen bg-black text-white pt-20 md:pt-24">
       <div className="w-full px-4 sm:px-6 py-16 md:py-20">
-        <div className="w-full">
+        <div className="w-[90%] mx-auto">
           <p className="text-gray-400 text-sm tracking-widest mb-4">
             STUNNING PHOTOGRAPHY BY
           </p>

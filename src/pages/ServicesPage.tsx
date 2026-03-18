@@ -129,7 +129,7 @@ export default function ServicesPage() {
     <div className="w-full min-h-screen bg-black text-white">
       <section className="pt-24 pb-16">
         <div className="w-full px-4 sm:px-6">
-          <div className="w-full flex flex-col gap-10">
+          <div className="max-w-7xl mx-auto flex flex-col gap-10">
             <div className="flex flex-col gap-6 items-start">
               <div className="w-full rounded-3xl bg-black/70 border border-white/10 p-6">
                 <p className="text-gray-400 text-sm tracking-widest mb-2">

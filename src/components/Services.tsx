@@ -11,7 +11,7 @@ export default function Services() {
   return (
     <section id="services" className="min-h-screen bg-black text-white py-16 md:py-20">
       <div className="w-full px-4 sm:px-6">
-        <div className="w-full">
+        <div className="w-[90%] mx-auto">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12">
             <div>
               <p className="text-gray-400 text-sm tracking-widest mb-2">

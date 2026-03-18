@@ -51,7 +51,7 @@ export default function FAQ() {
   return (
     <section className="min-h-screen bg-black text-white py-16 md:py-20">
       <div className="w-full px-4 sm:px-6">
-        <div className="w-full">
+        <div className="w-[90%] mx-auto">
           <div className="mb-12">
             <p className="text-gray-400 text-sm tracking-widest mb-2">FAQ'S</p>
             <h2 className="text-3xl md:text-4xl font-bold">

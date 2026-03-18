@@ -50,12 +50,12 @@ export default function Header() {
         isScrolled ? 'top-6' : 'top-0'
       }`}
     >
-      <nav className={`mx-auto max-w-6xl px-6 transition-all duration-500 ${
+      <nav className={`transition-all duration-500 ${
         isScrolled 
-          ? 'w-[92%] md:w-[920px] bg-black backdrop-blur-sm rounded-full shadow-none py-2.5 border border-white/50' 
-          : 'w-full py-4 bg-black/80 backdrop-blur-sm'
+          ? 'mx-auto max-w-6xl px-6 w-[92%] md:w-[920px] bg-black backdrop-blur-sm rounded-full shadow-none py-2.5 border border-white/50' 
+          : 'w-[90%] mx-auto px-6 py-4 bg-black/80 backdrop-blur-sm'
       }`}>
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img
               src="/assets/logo/logo2.png"
@@ -64,7 +64,7 @@ export default function Header() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
             <Link to="/" className={`${linkClass} transition-colors`}>
               Home
             </Link>
@@ -77,13 +77,14 @@ export default function Header() {
             <Link to="/services" className={`${linkClass} transition-colors`}>
               Services
             </Link>
-            <Link
-              to="/contact"
-              className={`${ctaClass} px-6 py-2 rounded-lg transition-colors`}
-            >
-              Contact Me
-            </Link>
           </div>
+
+          <Link
+            to="/contact"
+            className={`hidden md:block ${ctaClass} px-6 py-2 rounded-lg transition-colors`}
+          >
+            Contact Me
+          </Link>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -67,7 +67,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-black text-white pt-16 md:pt-20 pb-8">
       <div className="w-full px-4 sm:px-6">
-        <div className="w-full">
+        <div className="w-[90%] mx-auto">
           <div className="text-center mb-12">
             <div className="text-[120px] md:text-[200px] font-bold opacity-10 leading-none">
               CATAMARAN STUDIO
