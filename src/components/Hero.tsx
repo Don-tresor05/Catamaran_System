@@ -46,10 +46,15 @@ export default function Hero() {
             STUNNING PHOTOGRAPHY BY
           </p>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 md:mb-20">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2 sm:mb-0">
-              MARTIN MUNYAMPETA
-            </h1>
+            <div className="flex flex-col gap-0">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+                MARTIN
+              </h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+                MUNYAMPETA
+              </h1>
+            </div>
+            <div className="flex items-center gap-4 mt-4 md:mt-0">
               <span className="text-2xl md:text-4xl font-light">LET'S</span>
               <button
                 onClick={scrollToContact}
@@ -57,9 +62,7 @@ export default function Hero() {
               >
                 <ArrowUpRight className="w-6 h-6" />
               </button>
-              <span className="text-2xl md:text-4xl font-light">
-                WORK TOGETHER
-              </span>
+              <span className="text-2xl md:text-4xl font-light">WORK TOGETHER</span>
             </div>
           </div>
 

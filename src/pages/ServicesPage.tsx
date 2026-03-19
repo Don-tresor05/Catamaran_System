@@ -2,95 +2,99 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
-const portraitPackages = [
+const portraitPackages: { title: string; price: string; items: (string | { size: string; price: string })[] }[] = [
   {
-    title: 'Individual Session',
-    price: '$250',
+    title: 'Photoshoot Studio',
+    price: '2,000 RWF',
     items: [
-      'Ideal for capturing your unique personality and style.',
-      'Includes a 2-hour photoshoot and 20 professionally edited images.',
-      'Additional images can be purchased at $10 each.',
+      'Per One Soft Copy Edited',
     ],
   },
   {
-    title: 'Family Session',
-    price: '$400',
+    title: 'Wooden Photo Frames All Sizes (⚠️ Negotiable)',
+    price: '',
     items: [
-      'Perfect for creating lasting memories with your loved ones.',
-      'Includes a 3-hour photoshoot and 30 professionally edited images.',
-      'Additional images can be purchased at $10 each.',
-    ],
-  },
-  {
-    title: 'Couple Session',
-    price: '$300',
-    items: [
-      'Celebrate your love story with an intimate photoshoot.',
-      'Includes a 2.5-hour photoshoot and 25 professionally edited images.',
-      'Additional images can be purchased at $10 each.',
+      { size: 'A6 (10 X 15 cm)', price: '4,000 RWF' },
+      { size: 'A5 (20 X 21 cm)', price: '6,000 RWF' },
+      { size: 'A5 (20 X 25 cm)', price: '8,000 RWF' },
+      { size: 'A4 (20 X 30 cm)', price: '10,000 RWF' },
+      { size: 'A4 (27 X 35 cm)', price: '15,000 RWF' },
+      { size: 'A3 (30 X 40 cm)', price: '20,000 RWF' },
+      { size: 'A3 (30 X 45 cm)', price: '25,000 RWF' },
+      { size: 'A3 (40 X 50 cm)', price: '40,000 RWF' },
+      { size: 'A2 (40 X 60 cm)', price: '50,000 RWF' },
+      { size: 'A2 (45 X 60 cm)', price: '55,000 RWF' },
+      { size: 'A2 (50 X 60 cm)', price: '60,000 RWF' },
+      { size: 'A2 (60 X 76 cm)', price: '70,000 RWF' },
+      { size: 'A1 (60 X 90 cm)', price: '140,000 RWF' },
     ],
   },
 ];
 
 const eventPackages = [
   {
-    title: 'Wedding Photography',
-    price: '$1,500',
+    title: 'Wedding Coverage',
+    price: '⚠️ Negotiable',
     items: [
-      'Capture the magic of your special day.',
-      'Includes full-day coverage, a second photographer, and 300+ edited images.',
-      'Customizable packages are available for your wedding needs.',
+      'Full-day coverage for your special day.',
+      'Includes engagement session, ceremony, and reception.',
+      'Delivers 100+ edited images with a custom online gallery.',
     ],
   },
   {
-    title: 'Party Coverage',
-    price: '$800',
+    title: 'Birthday Shoot',
+    price: '2,000 RWF',
     items: [
-      'Preserve the fun and excitement of your event.',
-      'Includes up to 4 hours of coverage and 150+ edited images.',
-      'Additional hours can be added at $150 per hour.',
+      'Per One Soft Copy (Edited)',
     ],
   },
   {
-    title: 'Corporate Events',
-    price: 'Custom Pricing',
+    title: 'Graduation Photo',
+    price: '2,000 RWF',
     items: [
-      'Tailored solutions for corporate gatherings and conferences.',
-      'Contact us for a personalized quote based on your requirements.',
-      'Flexible coverage for single or multi-day events.',
+      'Per One Soft Copy Edited',
     ],
   },
 ];
 
 const commercialPackages = [
   {
-    title: 'Product Photography',
-    price: '$500',
+    title: 'Business Card',
+    price: '⚠️ Negotiable',
     items: [
-      'Showcase your products in the best light.',
-      'Half-day shoot, 20 edited product images, and high-res files.',
-      'Additional images can be purchased at $20 each.',
     ],
   },
   {
-    title: 'Real Estate Photography',
-    price: '$700',
+    title: 'Wall Watch Clock',
+    price: '⚠️ Negotiable',
     items: [
-      'Highlight the beauty of your properties.',
-      'Interior and exterior shots with 25 edited images.',
-      'Additional images can be purchased at $20 each.',
+      'We put pictures in all kinds of wall clocks.',
     ],
   },
   {
-    title: 'Brand Photography',
-    price: 'Custom Pricing',
+    title: 'Key Chains',
+    price: '⚠️ Negotiable',
     items: [
-      'Craft a visual narrative that aligns with your brand identity.',
-      'Contact us to discuss your brand photography needs.',
-      'Package tailored to campaign scope and deliverables.',
+      'We put pictures on the key chains',
+    ],
+  },
+  {
+    title: 'White Sublimation Mugs',
+    price: '15,000 RWF',
+    items: [
+      '',
+    ],
+  },
+  {
+    title: 'Crystal Awards',
+    price: 'From 70,000-120,000 RWF',
+    items: [
+      'you can order from our many verieties Crystals for your beloved s gifts or award',
     ],
   },
 ];
+
+type Item = string | { size: string; price: string };
 
 function PackageRow({
   title,
@@ -99,26 +103,44 @@ function PackageRow({
 }: {
   title: string;
   price: string;
-  items: string[];
+  items: Item[];
 }) {
+  const isSizePricing = items.length > 0 && typeof items[0] === 'object';
+
   return (
     <div className="grid md:grid-cols-[240px_1fr] gap-6 border-t border-white/10 py-8">
       <div>
-        <p className="text-sm text-gray-400 mb-2">{title}</p>
-        <p className="text-3xl font-semibold">{price}</p>
-        <button className="mt-2 text-xs text-white/70 hover:text-white inline-flex items-center gap-2">
-          BOOK A CALL <ArrowUpRight className="w-3 h-3" />
+        <p className="text-base text-gray-400 mb-2">{title}</p>
+        {price && <p className="text-4xl font-semibold">{price}</p>}
+        <button className="mt-2 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
+          BOOK A CALL <ArrowUpRight className="w-4 h-4" />
         </button>
       </div>
-      <div className="space-y-3">
-        {items.map((item) => (
-          <div
-            key={item}
-            className="rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-sm text-gray-300"
-          >
-            {item}
+      <div>
+        {isSizePricing ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {(items as { size: string; price: string }[]).map((item) => (
+              <div
+                key={item.size}
+                className="rounded-xl border border-white/10 bg-black/60 px-4 py-3 flex flex-col gap-1"
+              >
+                <p className="text-sm text-gray-400">{item.size}</p>
+                <p className="text-base font-semibold text-white">{item.price}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <div className="space-y-3">
+            {(items as string[]).filter(Boolean).map((item) => (
+              <div
+                key={item}
+                className="rounded-xl border border-white/10 bg-black/60 px-4 py-3 text-base text-gray-300"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -128,37 +150,35 @@ export default function ServicesPage() {
   return (
     <div className="w-full min-h-screen bg-black text-white">
       <section className="pt-24 pb-16">
-        <div className="w-full px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto flex flex-col gap-10">
-            <div className="flex flex-col gap-6 items-start">
-              <div className="w-full rounded-3xl bg-black/70 border border-white/10 p-6">
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
-                  SERVICES
-                </p>
-                <h1 className="text-3xl sm:text-4xl font-semibold">
-                  DIVERSE PHOTOGRAPHY OFFERINGS
-                </h1>
-                <p className="text-gray-400 mt-4 text-sm leading-relaxed max-w-3xl">
-                  Unlock the full spectrum of professional photography services
-                  tailored to your vision. From timeless portraits to
-                  captivating event coverage, I bring creativity and technical
-                  expertise to every project.
-                </p>
-              </div>
-              <div className="w-full">
-                <div className="relative rounded-[32px] overflow-hidden border border-white/10 bg-white/5">
-                  <div className="absolute left-6 top-6 h-24 w-16 rounded-2xl bg-white/10" />
-                  <img
-                    src="/assets/services/services-1.jpg"
-                    alt="Studio setup"
-                    className="w-full h-[180px] sm:h-[220px] md:h-[260px] object-cover"
-                  />
-                  <div className="absolute left-6 bottom-6 h-12 w-12 rounded-full border border-white/15 bg-black/60 flex items-center justify-center">
-                    <span className="text-lg text-white/70">✦</span>
-                  </div>
-                  <div className="absolute bottom-6 right-6 text-xs text-white/70">
-                    SCROLL DOWN TO SEE ALL SERVICES
-                  </div>
+        <div className="w-[90%] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col gap-10">
+            <div className="max-w-7xl mx-auto text-center">
+              <p className="text-gray-400 text-base tracking-widest mb-2">
+                SERVICES
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+                DIVERSE PHOTOGRAPHY OFFERINGS
+              </h1>
+              <p className="text-gray-300 mt-4 text-base leading-relaxed">
+                Unlock the full spectrum of professional photography services
+                tailored to your vision. From timeless portraits to
+                captivating event coverage, I bring creativity and technical
+                expertise to every project.
+              </p>
+            </div>
+            <div className="w-full">
+              <div className="relative rounded-[32px] overflow-hidden border border-white/10 bg-white/5">
+                <div className="absolute left-6 top-6 h-24 w-16 rounded-2xl bg-white/10" />
+                <img
+                  src="/assets/logo/bg.jpg"
+                  alt="Studio setup"
+                  className="w-full h-[200px] sm:h-[320px] md:h-[560px] object-cover"
+                />
+                <div className="absolute left-6 bottom-6 h-12 w-12 rounded-full border border-white/15 bg-black/60 flex items-center justify-center">
+                  <span className="text-lg text-white/70">✦</span>
+                </div>
+                <div className="absolute bottom-6 right-6 text-xs text-white/70">
+                  SCROLL DOWN TO SEE ALL SERVICES
                 </div>
               </div>
             </div>
@@ -167,16 +187,16 @@ export default function ServicesPage() {
 
             <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
               <div>
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                <p className="text-gray-400 text-base tracking-widest mb-2">
                   PORTRAIT PHOTOGRAPHY
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
                   Our portrait photography service is all about showcasing your
                   unique personality. We work closely with you to bring out
                   your best angles and expressions.
                 </p>
-                <button className="mt-4 text-xs text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-3 h-3" />
+                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
+                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
@@ -208,16 +228,16 @@ export default function ServicesPage() {
 
             <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
               <div>
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                <p className="text-gray-400 text-base tracking-widest mb-2">
                   EVENTS PHOTOGRAPHY
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
                   We document every heartfelt moment while blending into the
                   background, delivering natural and candid shots that reflect
                   the emotions of the day.
                 </p>
-                <button className="mt-4 text-xs text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-3 h-3" />
+                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
+                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
@@ -249,15 +269,15 @@ export default function ServicesPage() {
 
             <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
               <div>
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
+                <p className="text-gray-400 text-base tracking-widest mb-2">
                   COMMERCIAL PHOTOGRAPHY
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
                   We create striking imagery for products, services, and brand
                   campaigns that leave a lasting impact on your audience.
                 </p>
-                <button className="mt-4 text-xs text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-3 h-3" />
+                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
+                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
@@ -289,7 +309,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="bg-neutral-950">
-        <div className="w-full px-4 sm:px-6">
+        <div className="w-[90%] mx-auto px-4 sm:px-6">
           <FAQ />
         </div>
       </section>

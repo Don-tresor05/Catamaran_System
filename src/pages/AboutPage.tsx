@@ -48,14 +48,14 @@ export default function AboutPage() {
   return (
     <div className="w-full min-h-screen bg-black text-white">
       <section className="bg-neutral-950 text-white pt-24 pb-16 md:pb-20">
-        <div className="w-full px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto flex flex-col gap-8">
+        <div className="w-[90%] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col gap-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
                 <p className="text-gray-400 text-sm tracking-widest mb-2">
                   ABOUT
                 </p>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+                <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold leading-tight">
                   ABOUT MARTIN MUNYAMBO
                 </h1>
               </div>
@@ -94,13 +94,13 @@ export default function AboutPage() {
 
             <div className="border-t border-white/10 pt-10" />
 
-            <div className="grid md:grid-cols-2 gap-10 md:gap-12">
-              <div className="md:pr-8">
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
+            <div className="flex flex-col gap-10">
+              <div>
+                <p className="text-gray-400 text-base tracking-widest mb-2">
                   MY BIOGRAPHY
                 </p>
-                <h2 className="text-2xl font-semibold mb-4">THE STORY</h2>
-                <p className="text-gray-400 leading-relaxed">
+                <h2 className="text-3xl md:text-4xl font-semibold mb-4">THE STORY</h2>
+                <p className="text-gray-300 text-base leading-relaxed">
                   Marin Munyambo's love affair with photography began at a young
                   age, nurtured by the captivating landscapes and vibrant
                   cultures surrounding her in the heart of the USA. Her passion
@@ -110,23 +110,23 @@ export default function AboutPage() {
                   moments, Martin has honed her craft meticulously.
                 </p>
               </div>
-              <div className="md:pl-8 md:text-right">
-                <p className="text-gray-400 text-sm tracking-widest mb-2">
+              <div>
+                <p className="text-gray-400 text-base tracking-widest mb-2">
                   JOURNEY
                 </p>
-                <h2 className="text-2xl font-semibold mb-4">
+                <h2 className="text-3xl md:text-4xl font-semibold mb-6">
                   MARTIN'S JOURNEY - A TIMELINE
                 </h2>
-                <div className="grid sm:grid-cols-2 gap-4 md:text-left">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {timeline.map((item) => (
                     <div
                       key={item.year}
-                      className="rounded-2xl border border-white/10 bg-black/60 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                      className="rounded-2xl border border-white/10 bg-black/60 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                     >
                       <p className="text-sm text-gray-400 mb-2">
                         YEAR - {item.year}
                       </p>
-                      <p className="text-sm text-gray-300">{item.text}</p>
+                      <p className="text-base text-gray-200 leading-relaxed">{item.text}</p>
                     </div>
                   ))}
                 </div>
@@ -136,8 +136,8 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="bg-neutral-950">
-        <div className="w-full px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
+        <div className="w-[90%] mx-auto px-4 sm:px-6">
+          <div>
             <Testimonials />
           </div>
         </div>
