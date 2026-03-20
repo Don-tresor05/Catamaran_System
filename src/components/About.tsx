@@ -87,9 +87,11 @@ export default function About() {
 
                     <div className="flex flex-wrap gap-4">
                       <a
-                        href="#"
+                        href="https://www.instagram.com/catamaran__studio/"
                         className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
                         aria-label="Instagram"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <Instagram className="w-5 h-5" />
                       </a>

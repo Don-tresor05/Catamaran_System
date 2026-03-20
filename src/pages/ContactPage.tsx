@@ -46,8 +46,10 @@ export default function ContactPage() {
                 />
                 <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/75 px-3 py-3 backdrop-blur-sm">
                   <a
-                    href="#"
+                    href="https://www.instagram.com/catamaran__studio/"
                     aria-label="Instagram"
+                    target="_blank"
+                    rel="noreferrer"
                     className="rounded-full bg-white/10 p-2 text-gray-200 transition-colors hover:bg-white/20 hover:text-white"
                   >
                     <Instagram className="h-4 w-4" />

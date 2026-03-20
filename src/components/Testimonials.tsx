@@ -7,30 +7,30 @@ import {
 
 const testimonials = [
   {
-    name: 'Emily Johnson',
-    role: 'USA, California',
+    name: 'Beo',
+    role: 'RWANDA, Kigali',
     rating: 5,
-    text: "Damien's photography doesn't just capture moments; it captures emotions. His work is simply mesmerizing.",
+    text: "Martin's photography doesn't just capture moments; it captures emotions. His work is simply mesmerizing.",
     social: {
-      instagram: '#',
+      instagram: 'https://www.instagram.com/catamaran__studio/',
     },
   },
   {
-    name: 'John Smith',
-    role: 'USA, California',
+    name: 'Lionel',
+    role: 'RWANDA, Kigali',
     rating: 5,
-    text: 'Damien has an incredible talent for making every event feel effortless, and the results speak for themselves.',
+    text: 'Martin has an incredible talent for making every event feel effortless, and the results speak for themselves.',
     social: {
-      instagram: '#',
+      instagram: 'https://www.instagram.com/catamaran__studio/',
     },
   },
   {
-    name: 'Samantha Davis',
-    role: 'USA, California',
+    name: 'Shalom',
+    role: 'RWANDA, Kigali',
     rating: 4,
-    text: "I was blown away by Damien's ability to capture the essence of our wedding day. His photographs are our cherished memories.",
+    text: "I was blown away by Martin's ability to capture the essence of our wedding day. His photographs are our cherished memories.",
     social: {
-      instagram: '#',
+      instagram: 'https://www.instagram.com/catamaran__studio/',
     },
   },
 ];
@@ -84,6 +84,8 @@ export default function Testimonials() {
                     <a
                       href={testimonial.social.instagram}
                       aria-label={`${testimonial.name} Instagram`}
+                      target="_blank"
+                      rel="noreferrer"
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       <Instagram className="w-4 h-4" />

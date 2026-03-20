@@ -19,10 +19,10 @@ const footerLinks = {
     { label: 'TESTIMONIALS', href: '#testimonials' },
   ],
   clients: [
-    { label: 'KLOVESTO', href: '#' },
-    { label: 'NUKEWAY', href: '#' },
-    { label: "CLOVEN's", href: '#' },
-    { label: 'MENVOL', href: '#' },
+    { label: 'Beo', href: '#' },
+    { label: 'Lionel', href: '#' },
+    { label: "Stessy", href: '#' },
+    { label: 'Shalom', href: '#' },
   ],
   portfolio: [
     { label: 'EVENTS', href: '#' },
@@ -207,8 +207,10 @@ export default function Footer() {
 
             <div className="flex gap-2">
               <a
-                href="#"
+                href="https://www.instagram.com/catamaran__studio/"
                 aria-label="Instagram"
+                target="_blank"
+                rel="noreferrer"
                 className="rounded-full border border-white/10 bg-white/[0.03] p-2 text-gray-400 transition-colors hover:bg-white/[0.08] hover:text-white"
               >
                 <Instagram className="w-4 h-4" />
