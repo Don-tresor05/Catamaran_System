@@ -66,7 +66,7 @@ export default function Services() {
 
             <div className="relative">
               <img
-                src="/assets/services/services-1.jpg"
+                src="/assets/services/services-1.png"
                 alt="Event Photography"
                 className="w-full rounded-2xl"
               />

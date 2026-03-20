@@ -31,7 +31,7 @@ export default function ContactPage() {
 
                 <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10">
                   {/* <img
-                    src="/assets/hero/CAT_0515.jpg"
+                    src="/assets/hero/CAT_0515.png"
                     alt="Catamaran Studio landscape preview"
                     className="h-[180px] w-full object-cover sm:h-[240px]"
                   /> */}
@@ -40,7 +40,7 @@ export default function ContactPage() {
 
               <div className="relative min-h-[320px] overflow-hidden rounded-[28px] border border-white/10 bg-neutral-900">
                 <img
-                  src="/assets/about/about-1.jpg"
+                  src="/assets/about/about-1.png"
                   alt="Photographer holding a camera"
                   className="h-full w-full object-cover"
                 />

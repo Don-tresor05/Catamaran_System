@@ -201,7 +201,7 @@ export default function ServicesPage() {
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
                   <img
-                    src="/assets/hero/hero-5.jpg"
+                    src="/assets/hero/hero-5.png"
                     alt="Portrait"
                     className="w-full h-full object-cover"
                   />
@@ -242,7 +242,7 @@ export default function ServicesPage() {
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
                   <img
-                    src="/assets/hero/hero-7.jpg"
+                    src="/assets/hero/hero-7.png"
                     alt="Event photography"
                     className="w-full h-full object-cover"
                   />
@@ -282,7 +282,7 @@ export default function ServicesPage() {
               </div>
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
                   <img
-                    src="/assets/portfolio/portfolio-1.jpg"
+                    src="/assets/portfolio/portfolio-1.png"
                     alt="Commercial photography"
                     className="w-full h-full object-cover"
                   />

@@ -4,19 +4,19 @@ const projects = [
   {
     title: 'Faces of Resilience',
     date: 'March 2022',
-    image: '/assets/portfolio/portfolio-1.jpg',
+    image: '/assets/portfolio/portfolio-1.png',
     bgColor: 'from-orange-900 to-orange-700',
   },
   {
     title: 'A Wedding Tale',
     date: 'January 2020',
-    image: '/assets/portfolio/portfolio-2.JPG',
+    image: '/assets/portfolio/portfolio-2.png',
     bgColor: 'from-amber-200 to-amber-100',
   },
   {
     title: 'Product Elegance',
     date: 'January 2020',
-    image: '/assets/portfolio/portfolio-3.jpg',
+    image: '/assets/portfolio/portfolio-3.png',
     bgColor: 'from-amber-600 to-amber-500',
   },
 ];

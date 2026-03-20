@@ -80,7 +80,7 @@ export default function AboutPage() {
               <div className="absolute right-8 top-6 h-14 w-56 rounded-full bg-white/70 blur-[0.5px] opacity-80" />
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
               <img
-                src="/assets/about/about-1.jpg"
+                src="/assets/about/about-1.png"
                 alt="Martin Munyambo portrait"
                 className="w-full h-[260px] sm:h-[360px] md:h-[440px] object-cover"
               />

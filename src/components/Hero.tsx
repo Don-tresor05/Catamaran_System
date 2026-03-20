@@ -86,49 +86,49 @@ export default function Hero() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full auto-rows-[160px] sm:auto-rows-[200px]">
             <div className="col-span-1 row-span-2">
               <img
-                src="/assets/hero/hero-1.jpg"
+                src="/assets/hero/hero-1.png"
                 alt="Basketball player"
                 className="w-full h-full object-cover rounded-2xl"
               />
             </div>
             <div className="col-span-1">
               <img
-                src="/assets/hero/hero-2.jpg"
+                src="/assets/hero/hero-2.png"
                 alt="Portrait"
                 className="w-full h-full object-cover rounded-2xl"
               />
             </div>
             <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative">
               <img
-                src="/assets/hero/hero-3.jpg"
+                src="/assets/hero/hero-3.png"
                 alt="Profile silhouette"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="col-span-1">
               <img
-                src="/assets/hero/hero-4.jpg"
+                src="/assets/hero/hero-4.png"
                 alt="Fashion portrait"
                 className="w-full h-full object-cover rounded-2xl"
               />
             </div>
             <div className="col-span-2 rounded-2xl overflow-hidden relative">
               <img
-                src="/assets/hero/hero-5.jpg"
+                src="/assets/hero/hero-5.png"
                 alt="Portrait"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative">
               <img
-                src="/assets/hero/hero-6.jpg"
+                src="/assets/hero/hero-6.png"
                 alt="Profile silhouette"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="col-span-2">
               <img
-                src="/assets/hero/hero-7.jpg"
+                src="/assets/hero/hero-7.png"
                 alt="Black and white portrait"
                 className="w-full h-full object-cover rounded-2xl"
               />
