@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import CallNowButton from './components/CallNowButton';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import PortfolioPage from './pages/PortfolioPage';
@@ -11,6 +12,7 @@ function App() {
     <BrowserRouter>
       <div className="w-full min-h-screen bg-black">
         <Header />
+        <CallNowButton />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />

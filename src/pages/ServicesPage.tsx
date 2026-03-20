@@ -170,7 +170,7 @@ export default function ServicesPage() {
               <div className="relative rounded-[32px] overflow-hidden border border-white/10 bg-white/5">
                 <div className="absolute left-6 top-6 h-24 w-16 rounded-2xl bg-white/10" />
                 <img
-                  src="/assets/logo/bg.jpg"
+                  src="/assets/logo/bg.png"
                   alt="Studio setup"
                   className="w-full h-[200px] sm:h-[320px] md:h-[560px] object-cover"
                 />
