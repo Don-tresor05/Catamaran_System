@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const getScrollY = () => {
@@ -22,7 +21,6 @@ export default function Header() {
 
     const handleScroll = () => {
       const y = getScrollY();
-      setScrollY(y);
       setIsScrolled(y > 50);
     };
 

@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Linkedin, Plus } from 'lucide-react';
+import { Instagram, Plus } from 'lucide-react';
 import { useState } from 'react';
 
 export default function About() {
@@ -89,20 +89,9 @@ export default function About() {
                       <a
                         href="#"
                         className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
+                        aria-label="Instagram"
                       >
-                        <Facebook className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="#"
-                        className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
-                      >
-                        <Twitter className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="#"
-                        className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
+                        <Instagram className="w-5 h-5" />
                       </a>
                     </div>
 
