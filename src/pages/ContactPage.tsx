@@ -1,12 +1,141 @@
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   ArrowUpRight,
+  CalendarDays,
   Instagram,
   Mail,
   Phone,
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
+type BookingForm = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  service: string;
+  eventDate: string;
+  location: string;
+  details: string;
+};
+
+const initialForm: BookingForm = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  service: 'Photoshoot Studio',
+  eventDate: '',
+  location: '',
+  details: '',
+};
+
+const bookingServices = [
+  'Photoshoot Studio',
+  'Wooden Photo Frames',
+  'Wedding Coverage',
+  'Birthday Shoot',
+  'Graduation Photo',
+  'Business Card',
+  'Wall Watch Clock',
+  'Key Chains',
+  'White Sublimation Mugs',
+  'Crystal Awards',
+];
+
+const locationRequiredServices = ['Wedding Coverage', 'Graduation Photo'];
+const today = new Date().toISOString().split('T')[0];
+
 export default function ContactPage() {
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  const [form, setForm] = useState<BookingForm>(initialForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
+
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const isEmailJsConfigured = Boolean(publicKey && serviceId && templateId);
+  const showLocationField = locationRequiredServices.includes(form.service);
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus(null);
+
+    if (!isEmailJsConfigured) {
+      setStatus({
+        type: 'error',
+        message:
+          'Email sending is not configured yet. Add your EmailJS keys to the Vite environment variables first.',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          first_name: form.firstName,
+          last_name: form.lastName,
+          full_name: `${form.firstName} ${form.lastName}`.trim(),
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          event_date: form.eventDate,
+          location: form.location,
+          details: form.details,
+          title: `New booking request for ${form.service}`,
+        },
+        {
+          publicKey,
+        }
+      );
+
+      setStatus({
+        type: 'success',
+        message:
+          'Your booking request has been sent successfully. We will get back to you shortly.',
+      });
+      setForm(initialForm);
+    } catch {
+      setStatus({
+        type: 'error',
+        message:
+          'Something went wrong while sending your booking request. Please try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const openDatePicker = () => {
+    const input = dateInputRef.current;
+    if (!input) return;
+
+    input.focus();
+
+    if ('showPicker' in input) {
+      input.showPicker();
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-black text-white pt-24">
       <section className="w-full px-4 sm:px-6 pb-16 md:pb-20">
@@ -115,15 +244,21 @@ export default function ContactPage() {
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
               <div>
                 <h2 className="text-2xl font-semibold text-gray-200 sm:text-4xl">
-                  SEND ME A MESSAGE
+                  BOOK A SESSION
                 </h2>
                 <p className="mt-5 max-w-md text-sm leading-7 text-gray-500 sm:text-base">
-                  Have a specific inquiry or a session in mind? Use this form to
-                  share the essentials and we will get back to you promptly.
+                  Use this booking form to share the key details for your shoot.
+                  Once it arrives in our inbox, we can confirm availability,
+                  pricing, and the next steps with you.
                 </p>
+                <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-7 text-gray-400">
+                  Booking requests include your preferred service, date,
+                  location, and project notes so we can respond with something
+                  useful right away.
+                </div>
               </div>
 
-              <form className="grid gap-8" onSubmit={(e) => e.preventDefault()}>
+              <form className="grid gap-8" onSubmit={handleSubmit}>
                 <div className="grid gap-8 md:grid-cols-2">
                   <label className="block">
                     <span className="mb-3 block text-sm text-gray-400">
@@ -131,7 +266,11 @@ export default function ContactPage() {
                     </span>
                     <input
                       type="text"
+                      name="firstName"
+                      value={form.firstName}
+                      onChange={handleChange}
                       placeholder="FIRST NAME"
+                      required
                       className="w-full border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
                     />
                   </label>
@@ -142,7 +281,11 @@ export default function ContactPage() {
                     </span>
                     <input
                       type="text"
+                      name="lastName"
+                      value={form.lastName}
+                      onChange={handleChange}
                       placeholder="LAST NAME"
+                      required
                       className="w-full border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
                     />
                   </label>
@@ -151,7 +294,11 @@ export default function ContactPage() {
                     <span className="mb-3 block text-sm text-gray-400">Email</span>
                     <input
                       type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
                       placeholder="EMAIL ADDRESS"
+                      required
                       className="w-full border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
                     />
                   </label>
@@ -162,29 +309,117 @@ export default function ContactPage() {
                     </span>
                     <input
                       type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
                       placeholder="PHONE NUMBER"
+                      required
                       className="w-full border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
                     />
                   </label>
+
+                  <label className="block">
+                    <span className="mb-3 block text-sm text-gray-400">
+                      Service
+                    </span>
+                    <select
+                      name="service"
+                      value={form.service}
+                      onChange={handleChange}
+                      className="w-full border-b border-white/10 bg-black pb-3 text-sm text-white outline-none transition-colors focus:border-white/40"
+                    >
+                      {bookingServices.map((service) => (
+                        <option key={service}>{service}</option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-3 block text-sm text-gray-400">
+                      Preferred Date
+                    </span>
+                    <div className="flex items-center gap-3 border-b border-white/10 pb-3 transition-colors focus-within:border-white/40">
+                      <input
+                        ref={dateInputRef}
+                        type="date"
+                        name="eventDate"
+                        value={form.eventDate}
+                        onChange={handleChange}
+                        min={today}
+                        required
+                        className="booking-date-input w-full bg-transparent text-sm text-white outline-none [color-scheme:dark]"
+                      />
+                      <button
+                        type="button"
+                        onClick={openDatePicker}
+                        aria-label="Open calendar"
+                        className="text-gray-400 transition-colors hover:text-white"
+                      >
+                        <CalendarDays className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </label>
                 </div>
+
+                {showLocationField && (
+                  <label className="block">
+                    <span className="mb-3 block text-sm text-gray-400">
+                      Location
+                    </span>
+                    <input
+                      type="text"
+                      name="location"
+                      value={form.location}
+                      onChange={handleChange}
+                      placeholder="CITY / VENUE / AREA"
+                      required={showLocationField}
+                      className="w-full border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
+                    />
+                  </label>
+                )}
 
                 <label className="block">
                   <span className="mb-3 block text-sm text-gray-400">
-                    Your Message
+                    Booking Details
                   </span>
                   <textarea
+                    name="details"
+                    value={form.details}
+                    onChange={handleChange}
                     rows={4}
-                    placeholder="MESSAGE"
+                    placeholder="TELL US ABOUT THE SESSION, NUMBER OF PEOPLE, STYLE, TIMING, OR ANYTHING IMPORTANT"
+                    required
                     className="w-full resize-none border-b border-white/10 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-gray-600 focus:border-white/40"
                   />
                 </label>
 
+                {!isEmailJsConfigured && (
+                  <p className="rounded-2xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+                    EmailJS keys are missing. Add `VITE_EMAILJS_PUBLIC_KEY`,
+                    `VITE_EMAILJS_SERVICE_ID`, and `VITE_EMAILJS_TEMPLATE_ID`
+                    to your environment before using this booking form.
+                  </p>
+                )}
+
+                {status && (
+                  <p
+                    className={`rounded-2xl border px-4 py-3 text-sm ${
+                      status.type === 'success'
+                        ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-200'
+                        : 'border-red-500/20 bg-red-500/10 text-red-200'
+                    }`}
+                  >
+                    {status.message}
+                  </p>
+                )}
+
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="group inline-flex w-fit items-center gap-3 text-2xl font-semibold tracking-tight text-white"
                   >
-                    SEND MESSAGE
+                    {isSubmitting ? 'SENDING BOOKING...' : 'SEND BOOKING'}
                     <span className="flex h-10 w-14 items-center justify-center rounded-full bg-blue-600 transition-colors group-hover:bg-blue-500">
                       <ArrowUpRight className="h-4 w-4" />
                     </span>

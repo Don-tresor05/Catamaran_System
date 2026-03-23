@@ -176,3 +176,11 @@ img:not([src]) {
 .swipe-track:active {
   cursor: grabbing;
 }
+
+.booking-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
