@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
@@ -96,6 +97,27 @@ const commercialPackages = [
 
 type Item = string | { size: string; price: string };
 
+const serviceShowcases = [
+  {
+    title: 'PORTRAIT PHOTOGRAPHY',
+    description:
+      'Our portrait photography service is all about showcasing your unique personality. We work closely with you to bring out your best angles and expressions.',
+    slides: ['/assets/hero/hero-5.png', '/assets/about/about-1.png', '/assets/hero/hero-2.png'],
+  },
+  {
+    title: 'EVENTS PHOTOGRAPHY',
+    description:
+      'We document every heartfelt moment while blending into the background, delivering natural and candid shots that reflect the emotions of the day.',
+    slides: ['/assets/hero/hero-7.png', '/assets/services/services-1.png', '/assets/portfolio/portfolio-2.png'],
+  },
+  {
+    title: 'COMMERCIAL PHOTOGRAPHY',
+    description:
+      'We create striking imagery for products, services, and brand campaigns that leave a lasting impact on your audience.',
+    slides: ['/assets/portfolio/portfolio-1.png', '/assets/portfolio/portfolio-3.png', '/assets/logo/bg.png'],
+  },
+];
+
 function PackageRow({
   title,
   price,
@@ -146,6 +168,102 @@ function PackageRow({
   );
 }
 
+function ServiceShowcase({
+  title,
+  description,
+  slides,
+}: {
+  title: string;
+  description: string;
+  slides: string[];
+}) {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  const goPrev = () => {
+    setSlideIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const goNext = () => {
+    setSlideIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const handleTouchEnd = (clientX: number) => {
+    if (touchStart === null) return;
+    const diff = clientX - touchStart;
+    if (diff > 60) {
+      goPrev();
+    } else if (diff < -60) {
+      goNext();
+    }
+    setTouchStart(null);
+  };
+
+  return (
+    <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
+      <div>
+        <p className="text-gray-400 text-base tracking-widest mb-2">
+          {title}
+        </p>
+        <p className="text-gray-300 text-base leading-relaxed max-w-xl">
+          {description}
+        </p>
+        <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
+          VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
+        </button>
+      </div>
+      <div
+        className="media-card relative rounded-2xl aspect-square"
+        onTouchStart={(event) => setTouchStart(event.touches[0].clientX)}
+        onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}
+      >
+        {slides.map((slide, index) => (
+          <img
+            key={slide}
+            src={slide}
+            alt={title}
+            className={`w-full h-full object-cover transition-all duration-700 ${
+              index === slideIndex
+                ? 'relative opacity-100 scale-100'
+                : 'absolute inset-0 opacity-0 scale-110'
+            }`}
+          />
+        ))}
+        <div className="absolute inset-x-0 bottom-4 flex items-center justify-between px-4">
+          <div className="flex gap-2">
+            {slides.map((_, index) => (
+              <button
+                key={`${title}-${index}`}
+                onClick={() => setSlideIndex(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === slideIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'
+                }`}
+                aria-label={`Show ${title.toLowerCase()} image ${index + 1}`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2 rounded-full bg-black/80 border border-white/10 px-3 py-2">
+            <button
+              onClick={goPrev}
+              className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center"
+              aria-label={`Previous ${title.toLowerCase()} image`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={goNext}
+              className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center"
+              aria-label={`Next ${title.toLowerCase()} image`}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ServicesPage() {
   return (
     <div className="w-full min-h-screen bg-black text-white">
@@ -185,36 +303,7 @@ export default function ServicesPage() {
 
             <div className="border-t border-white/10" />
 
-            <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
-              <div>
-                <p className="text-gray-400 text-base tracking-widest mb-2">
-                  PORTRAIT PHOTOGRAPHY
-                </p>
-                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
-                  Our portrait photography service is all about showcasing your
-                  unique personality. We work closely with you to bring out
-                  your best angles and expressions.
-                </p>
-                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
-                </button>
-              </div>
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
-                  <img
-                    src="/assets/hero/hero-5.png"
-                    alt="Portrait"
-                    className="w-full h-full object-cover"
-                  />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-2 rounded-full bg-black/80 border border-white/10 px-3 py-2">
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ServiceShowcase {...serviceShowcases[0]} />
 
             <div className="border-t border-white/10" />
 
@@ -226,36 +315,7 @@ export default function ServicesPage() {
 
             <div className="border-t border-white/10" />
 
-            <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
-              <div>
-                <p className="text-gray-400 text-base tracking-widest mb-2">
-                  EVENTS PHOTOGRAPHY
-                </p>
-                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
-                  We document every heartfelt moment while blending into the
-                  background, delivering natural and candid shots that reflect
-                  the emotions of the day.
-                </p>
-                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
-                </button>
-              </div>
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
-                  <img
-                    src="/assets/hero/hero-7.png"
-                    alt="Event photography"
-                    className="w-full h-full object-cover"
-                  />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-2 rounded-full bg-black/80 border border-white/10 px-3 py-2">
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ServiceShowcase {...serviceShowcases[1]} />
 
             <div className="border-t border-white/10" />
 
@@ -267,35 +327,7 @@ export default function ServicesPage() {
 
             <div className="border-t border-white/10" />
 
-            <div className="grid lg:grid-cols-[1fr_520px] gap-10 items-start">
-              <div>
-                <p className="text-gray-400 text-base tracking-widest mb-2">
-                  COMMERCIAL PHOTOGRAPHY
-                </p>
-                <p className="text-gray-300 text-base leading-relaxed max-w-xl">
-                  We create striking imagery for products, services, and brand
-                  campaigns that leave a lasting impact on your audience.
-                </p>
-                <button className="mt-4 text-sm text-white/70 hover:text-white inline-flex items-center gap-2">
-                  VIEW PROJECTS <ArrowUpRight className="w-4 h-4" />
-                </button>
-              </div>
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-square">
-                  <img
-                    src="/assets/portfolio/portfolio-1.png"
-                    alt="Commercial photography"
-                    className="w-full h-full object-cover"
-                  />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-2 rounded-full bg-black/80 border border-white/10 px-3 py-2">
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ServiceShowcase {...serviceShowcases[2]} />
 
             <div className="border-t border-white/10" />
 

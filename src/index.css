@@ -49,3 +49,130 @@ img[src=""],
 img:not([src]) {
   opacity: 0;
 }
+
+@keyframes portfolio-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes portfolio-hero-float {
+  0%,
+  100% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.08) translate3d(0, -10px, 0);
+  }
+}
+
+.portfolio-marquee {
+  animation: portfolio-marquee 20s linear infinite;
+}
+
+.portfolio-hero-image {
+  animation: portfolio-hero-float 8s ease-in-out infinite;
+}
+
+.portfolio-card-glow {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  transition: box-shadow 300ms ease;
+}
+
+.portfolio-card-glow:hover {
+  box-shadow: 0 24px 80px rgba(18, 79, 129, 0.22);
+}
+
+.portfolio-card-shine {
+  animation: none;
+}
+
+.portfolio-card-glow:hover .portfolio-card-shine {
+  animation: portfolio-shine 800ms ease forwards;
+}
+
+@keyframes portfolio-shine {
+  from {
+    transform: translateX(0) skewX(-12deg);
+  }
+
+  to {
+    transform: translateX(320%) skewX(-12deg);
+  }
+}
+
+@keyframes media-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0) scale(1.02);
+  }
+}
+
+.media-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    transform 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.media-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 35%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.03)
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 70px rgba(12, 26, 48, 0.24);
+}
+
+.media-card:hover::after {
+  opacity: 1;
+}
+
+.media-card img {
+  transition: transform 700ms ease, filter 500ms ease;
+}
+
+.media-card:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.08);
+}
+
+.media-float img {
+  animation: media-float 8s ease-in-out infinite;
+}
+
+.swipe-track {
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.swipe-track:active {
+  cursor: grabbing;
+}

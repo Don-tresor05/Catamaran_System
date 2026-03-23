@@ -24,11 +24,13 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div className="relative">
               <div className="absolute -left-4 -top-4 w-32 h-32 border-l-4 border-t-4 border-white/20 rounded-tl-[100px]"></div>
-              <img
-                src="/assets/about/about-1.png"
-                alt="Martin Munyampeta"
-                className="w-full rounded-2xl"
-              />
+              <div className="media-card media-float rounded-2xl">
+                <img
+                  src="/assets/about/about-1.png"
+                  alt="Martin Munyampeta"
+                  className="w-full rounded-2xl"
+                />
+              </div>
             </div>
 
             <div className="space-y-8">

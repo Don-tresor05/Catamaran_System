@@ -1,5 +1,5 @@
-import { ArrowUpRight } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const categories = [
   'EVENT PHOTOGRAPHY',
@@ -13,6 +13,16 @@ const categories = [
 
 export default function Hero() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const heroImages = [
+    '/assets/hero/hero-1.png',
+    '/assets/hero/hero-2.png',
+    '/assets/hero/hero-3.png',
+    '/assets/hero/hero-4.png',
+    '/assets/hero/hero-5.png',
+    '/assets/hero/hero-6.png',
+    '/assets/hero/hero-7.png',
+  ];
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -30,6 +40,14 @@ export default function Hero() {
     const intervalId = setInterval(scroll, 30);
     return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setMobileSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, [heroImages.length]);
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');
@@ -83,22 +101,76 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full auto-rows-[160px] sm:auto-rows-[200px]">
+          <div className="md:hidden">
+            <div className="media-card media-float relative rounded-[28px]">
+              {heroImages.map((image, index) => (
+                <img
+                  key={image}
+                  src={image}
+                  alt={`Hero slide ${index + 1}`}
+                  className={`aspect-[0.92] w-full object-cover transition-all duration-700 ${
+                    index === mobileSlide
+                      ? 'relative scale-100 opacity-100'
+                      : 'absolute inset-0 scale-110 opacity-0'
+                  }`}
+                />
+              ))}
+              <div className="absolute inset-x-0 bottom-4 flex items-center justify-between px-4">
+                <div className="flex gap-2">
+                  {heroImages.map((_, index) => (
+                    <button
+                      key={`hero-mobile-${index}`}
+                      onClick={() => setMobileSlide(index)}
+                      className={`h-2 rounded-full transition-all ${
+                        index === mobileSlide ? 'w-8 bg-white' : 'w-2 bg-white/40'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="flex gap-2 rounded-full border border-white/10 bg-black/65 px-2 py-2 backdrop-blur-sm">
+                  <button
+                    onClick={() =>
+                      setMobileSlide((prev) =>
+                        prev === 0 ? heroImages.length - 1 : prev - 1
+                      )
+                    }
+                    className="rounded-full bg-white/10 p-2 text-white"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setMobileSlide((prev) => (prev + 1) % heroImages.length)
+                    }
+                    className="rounded-full bg-white/10 p-2 text-white"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full auto-rows-[160px] sm:auto-rows-[200px]">
             <div className="col-span-1 row-span-2">
-              <img
-                src="/assets/hero/hero-1.png"
-                alt="Basketball player"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <div className="media-card media-float rounded-2xl h-full">
+                <img
+                  src="/assets/hero/hero-1.png"
+                  alt="Basketball player"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
             </div>
             <div className="col-span-1">
-              <img
-                src="/assets/hero/hero-2.png"
-                alt="Portrait"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <div className="media-card rounded-2xl h-full">
+                <img
+                  src="/assets/hero/hero-2.png"
+                  alt="Portrait"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
             </div>
-            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative">
+            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative media-card media-float">
               <img
                 src="/assets/hero/hero-3.png"
                 alt="Profile silhouette"
@@ -106,20 +178,22 @@ export default function Hero() {
               />
             </div>
             <div className="col-span-1">
-              <img
-                src="/assets/hero/hero-4.png"
-                alt="Fashion portrait"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <div className="media-card rounded-2xl h-full">
+                <img
+                  src="/assets/hero/hero-4.png"
+                  alt="Fashion portrait"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
             </div>
-            <div className="col-span-2 rounded-2xl overflow-hidden relative">
+            <div className="col-span-2 rounded-2xl overflow-hidden relative media-card">
               <img
                 src="/assets/hero/hero-5.png"
                 alt="Portrait"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative">
+            <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative media-card media-float">
               <img
                 src="/assets/hero/hero-6.png"
                 alt="Profile silhouette"
@@ -127,11 +201,13 @@ export default function Hero() {
               />
             </div>
             <div className="col-span-2">
-              <img
-                src="/assets/hero/hero-7.png"
-                alt="Black and white portrait"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <div className="media-card rounded-2xl h-full">
+                <img
+                  src="/assets/hero/hero-7.png"
+                  alt="Black and white portrait"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>
