@@ -216,7 +216,7 @@ export default function Testimonials() {
 
           <div className="overflow-hidden border-t border-white/10 pt-10 mt-10">
             <div className="text-center text-[72px] font-semibold leading-none tracking-tight text-white/10 sm:text-[120px] md:text-[160px]">
-              CATAMARAN
+              CATAMARAN <br></br>STUDIO
             </div>
           </div>
         </div>

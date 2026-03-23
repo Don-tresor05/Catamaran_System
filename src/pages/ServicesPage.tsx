@@ -271,9 +271,9 @@ export default function ServicesPage() {
         <div className="w-[90%] mx-auto px-4 sm:px-6">
           <div className="flex flex-col gap-10">
             <div className="max-w-7xl mx-auto text-center">
-              <p className="text-gray-400 text-base tracking-widest mb-2">
+              {/* <p className="text-gray-400 text-base tracking-widest mb-2">
                 SERVICES
-              </p>
+              </p> */}
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
                 DIVERSE PHOTOGRAPHY OFFERINGS
               </h1>
