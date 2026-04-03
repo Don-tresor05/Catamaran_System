@@ -66,10 +66,10 @@ export default function Hero() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 md:mb-20">
             <div className="flex flex-col gap-0">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-                MARTIN
+                CATAMARAN
               </h1>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-                MUNYAMPETA
+                STUDIO
               </h1>
             </div>
             <div className="flex items-center gap-4 mt-4 md:mt-0">
