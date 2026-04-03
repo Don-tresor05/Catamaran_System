@@ -77,7 +77,7 @@ export default function About() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div>
                         <p className="text-gray-400 text-sm mb-2">Email</p>
-                        <p className="text-white">catamaran@gmail.com</p>
+                        <p className="text-white">catamaranstudio0@gmail.com</p>
                       </div>
                       <div>
                         <p className="text-gray-400 text-sm mb-2">
