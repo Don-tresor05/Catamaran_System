@@ -222,7 +222,7 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="mailto:catamaranstudio@gmail.com"
+                  href="mailto:catamaranstudio0@gmail.com"
                   className="group rounded-[24px] border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-white/20 hover:bg-white/[0.06]"
                 >
                   <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white">
@@ -232,7 +232,7 @@ export default function ContactPage() {
                     EMAIL
                   </p>
                   <div className="mt-3 flex items-center justify-between gap-4">
-                    <p className="text-lg text-white">catamaranstudio@gmail.com</p>
+                    <p className="text-lg text-white">catamaranstudio0@gmail.com</p>
                     <ArrowUpRight className="h-4 w-4 text-gray-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
                   </div>
                 </a>
