@@ -56,7 +56,7 @@ export default function AboutPage() {
                   ABOUT
                 </p>
                 <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold leading-tight">
-                  ABOUT MARTIN MUNYAMBO
+                  ABOUT MARTIN
                 </h1>
               </div>
               <button className="text-white/80 hover:text-white flex items-center gap-2 transition-colors">
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 </p>
                 <h2 className="text-3xl md:text-4xl font-semibold mb-4">THE STORY</h2>
                 <p className="text-gray-300 text-base leading-relaxed">
-                  Marin Munyambo's love affair with photography began at a young
+                  Martin's love affair with photography began at a young
                   age, nurtured by the captivating landscapes and vibrant
                   cultures surrounding her in the heart of the USA. Her passion
                   for storytelling through imagery led her to embark on a
