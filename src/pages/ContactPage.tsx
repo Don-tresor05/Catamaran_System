@@ -72,6 +72,8 @@ export default function ContactPage() {
     }));
   };
 
+  const whatsappNumber = '250784809323';
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus(null);
@@ -103,9 +105,25 @@ export default function ContactPage() {
           details: form.details,
           title: `New booking request for ${form.service}`,
         },
-        {
-          publicKey,
-        }
+        { publicKey }
+      );
+
+      const whatsappMessage = [
+        '*New Booking Request*',
+        `*Name:* ${form.firstName} ${form.lastName}`,
+        `*Email:* ${form.email}`,
+        `*Phone:* ${form.phone}`,
+        `*Service:* ${form.service}`,
+        `*Preferred Date:* ${form.eventDate}`,
+        form.location ? `*Location:* ${form.location}` : null,
+        `*Details:* ${form.details}`,
+      ]
+        .filter(Boolean)
+        .join('%0A');
+
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
+        '_blank'
       );
 
       setStatus({
