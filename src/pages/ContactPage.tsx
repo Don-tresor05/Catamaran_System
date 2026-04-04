@@ -5,7 +5,9 @@ import {
   CalendarDays,
   Instagram,
   Mail,
+  MessageCircle,
   Phone,
+  X,
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -19,6 +21,9 @@ type BookingForm = {
   location: string;
   details: string;
 };
+
+type SendMethod = 'email' | 'whatsapp' | 'both';
+type ModalStep = 'choose' | 'email-sent';
 
 const initialForm: BookingForm = {
   firstName: '',
@@ -46,11 +51,14 @@ const bookingServices = [
 
 const locationRequiredServices = ['Wedding Coverage', 'Graduation Photo'];
 const today = new Date().toISOString().split('T')[0];
+const whatsappNumber = '250784809323';
 
 export default function ContactPage() {
   const dateInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<BookingForm>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalStep, setModalStep] = useState<ModalStep>('choose');
   const [status, setStatus] = useState<{
     type: 'success' | 'error';
     message: string;
@@ -66,15 +74,10 @@ export default function ContactPage() {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
+    setForm((current) => ({ ...current, [name]: value }));
   };
 
-  const whatsappNumber = '250784809323';
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus(null);
 
@@ -87,56 +90,75 @@ export default function ContactPage() {
       return;
     }
 
+    setModalStep('choose');
+    setShowModal(true);
+  };
+
+  const buildWhatsappMessage = () =>
+    [
+      '*New Booking Request*',
+      `*Name:* ${form.firstName} ${form.lastName}`,
+      `*Email:* ${form.email}`,
+      `*Phone:* ${form.phone}`,
+      `*Service:* ${form.service}`,
+      `*Preferred Date:* ${form.eventDate}`,
+      form.location ? `*Location:* ${form.location}` : null,
+      `*Details:* ${form.details}`,
+    ]
+      .filter(Boolean)
+      .join('%0A');
+
+  const sendBooking = async (method: SendMethod) => {
     setIsSubmitting(true);
 
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          first_name: form.firstName,
-          last_name: form.lastName,
-          full_name: `${form.firstName} ${form.lastName}`.trim(),
-          email: form.email,
-          phone: form.phone,
-          service: form.service,
-          event_date: form.eventDate,
-          location: form.location,
-          details: form.details,
-          title: `New booking request for ${form.service}`,
-        },
-        { publicKey }
-      );
+      if (method === 'email' || method === 'both') {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            first_name: form.firstName,
+            last_name: form.lastName,
+            full_name: `${form.firstName} ${form.lastName}`.trim(),
+            email: form.email,
+            phone: form.phone,
+            service: form.service,
+            event_date: form.eventDate,
+            location: form.location,
+            details: form.details,
+            title: `New booking request for ${form.service}`,
+          },
+          { publicKey }
+        );
+      }
 
-      const whatsappMessage = [
-        '*New Booking Request*',
-        `*Name:* ${form.firstName} ${form.lastName}`,
-        `*Email:* ${form.email}`,
-        `*Phone:* ${form.phone}`,
-        `*Service:* ${form.service}`,
-        `*Preferred Date:* ${form.eventDate}`,
-        form.location ? `*Location:* ${form.location}` : null,
-        `*Details:* ${form.details}`,
-      ]
-        .filter(Boolean)
-        .join('%0A');
+      if (method === 'both') {
+        setModalStep('email-sent');
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        window.open(
+          `https://wa.me/${whatsappNumber}?text=${buildWhatsappMessage()}`,
+          '_blank'
+        );
+      } else if (method === 'whatsapp') {
+        window.open(
+          `https://wa.me/${whatsappNumber}?text=${buildWhatsappMessage()}`,
+          '_blank'
+        );
+      }
 
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
-        '_blank'
-      );
-
+      setShowModal(false);
+      setModalStep('choose');
       setStatus({
         type: 'success',
-        message:
-          'Your booking request has been sent successfully. We will get back to you shortly.',
+        message: 'Your booking request has been sent successfully. We will get back to you shortly.',
       });
       setForm(initialForm);
     } catch {
+      setShowModal(false);
+      setModalStep('choose');
       setStatus({
         type: 'error',
-        message:
-          'Something went wrong while sending your booking request. Please try again.',
+        message: 'Something went wrong while sending your booking request. Please try again.',
       });
     } finally {
       setIsSubmitting(false);
@@ -146,16 +168,107 @@ export default function ContactPage() {
   const openDatePicker = () => {
     const input = dateInputRef.current;
     if (!input) return;
-
     input.focus();
-
-    if ('showPicker' in input) {
-      input.showPicker();
-    }
+    if ('showPicker' in input) input.showPicker();
   };
 
   return (
     <div className="w-full min-h-screen bg-black text-white pt-24">
+
+      {/* Send Method Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => { if (!isSubmitting) setShowModal(false); }}
+          />
+          <div className="relative w-full max-w-md rounded-[28px] border border-white/10 bg-neutral-950 p-6 sm:p-8">
+            <button
+              onClick={() => setShowModal(false)}
+              disabled={isSubmitting}
+              className="absolute right-4 top-4 rounded-full p-1.5 text-gray-500 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <p className="mb-1 text-xs tracking-[0.28em] text-gray-500">
+              SEND BOOKING
+            </p>
+            <h2 className="text-xl font-semibold text-white sm:text-2xl">
+              How would you like to send?
+            </h2>
+            <p className="mt-2 text-sm text-gray-500">
+              {modalStep === 'choose'
+                ? 'Choose your preferred way to send the booking request.'
+                : 'Email sent! Opening WhatsApp...'}
+            </p>
+
+            <div className="mt-6 grid gap-3">
+              {modalStep === 'choose' ? (
+                <>
+                  <button
+                    onClick={() => sendBooking('email')}
+                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-colors hover:border-white/20 hover:bg-white/[0.07]"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600/20 text-blue-400">
+                      <Mail className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-medium text-white">Email only</p>
+                      <p className="text-xs text-gray-500">Send directly to our inbox via EmailJS</p>
+                    </div>
+                    <ArrowUpRight className="ml-auto h-4 w-4 text-gray-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                  </button>
+
+                  <button
+                    onClick={() => sendBooking('whatsapp')}
+                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-colors hover:border-white/20 hover:bg-white/[0.07]"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-600/20 text-green-400">
+                      <MessageCircle className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-medium text-white">WhatsApp only</p>
+                      <p className="text-xs text-gray-500">Open WhatsApp with your booking details pre-filled</p>
+                    </div>
+                    <ArrowUpRight className="ml-auto h-4 w-4 text-gray-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                  </button>
+
+                  <button
+                    onClick={() => sendBooking('both')}
+                    className="group flex items-center gap-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4 text-left transition-colors hover:border-blue-500/40 hover:bg-blue-500/10"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
+                      <Mail className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <p className="font-medium text-white">Both</p>
+                      <p className="text-xs text-gray-500">Send via email then open WhatsApp</p>
+                    </div>
+                    <ArrowUpRight className="ml-auto h-4 w-4 text-gray-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                  </button>
+                </>
+              ) : (
+                <div className="flex flex-col items-center gap-4 py-4">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+                    <Mail className="h-6 w-6" />
+                  </span>
+                  <p className="text-center text-sm text-gray-400">
+                    Email sent successfully!<br />Redirecting to WhatsApp...
+                  </p>
+                  <div className="flex gap-1">
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:0ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:150ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:300ms]" />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       <section className="w-full px-4 sm:px-6 pb-16 md:pb-20">
         <div className="w-[90%] mx-auto">
           <div className="mb-10 rounded-[32px] border border-white/10 bg-neutral-950 p-4 sm:p-6 md:p-8">
