@@ -1,5 +1,6 @@
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   'EVENT PHOTOGRAPHY',
@@ -49,11 +50,10 @@ export default function Hero() {
     return () => window.clearInterval(intervalId);
   }, [heroImages.length]);
 
+  const navigate = useNavigate();
+
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate('/contact');
   };
 
   return (

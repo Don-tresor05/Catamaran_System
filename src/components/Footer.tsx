@@ -1,6 +1,6 @@
 import { ArrowUpRight, Instagram } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const categories = [
   'EVENT PHOTOGRAPHY',
@@ -58,11 +58,10 @@ export default function Footer() {
     return () => clearInterval(intervalId);
   }, []);
 
+  const navigate = useNavigate();
+
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate('/contact');
   };
 
   return (

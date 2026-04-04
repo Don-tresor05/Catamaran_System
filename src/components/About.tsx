@@ -1,7 +1,9 @@
 import { Instagram, Plus } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function About() {
+  const navigate = useNavigate();
   const [showIntro, setShowIntro] = useState(false);
   const [showContact, setShowContact] = useState(false);
 
@@ -100,7 +102,7 @@ export default function About() {
                     </div>
 
                     <div className="flex flex-wrap gap-4">
-                      <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
+                      <button onClick={() => navigate('/contact')} className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
                         Let's Work
                       </button>
                       {/* <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg transition-colors">
