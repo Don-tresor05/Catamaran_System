@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import ScrollToTop from './components/ScrollToTop';
 import CallNowButton from './components/CallNowButton';
 import LoadingScreen from './components/LoadingScreen';
 import Home from './pages/Home';
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {loading && <LoadingScreen onDone={() => setLoading(false)} />}
       <div className={`w-full min-h-screen bg-black transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Header />
