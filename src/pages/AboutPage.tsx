@@ -81,7 +81,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
               <img
                 src="/assets/about/about-1.png"
-                alt="Martin Munyambo portrait"
+                alt="Martin Munyampeta portrait"
                 className="w-full h-[260px] sm:h-[360px] md:h-[440px] object-cover"
               />
               <div className="absolute left-6 bottom-6 h-12 w-12 rounded-full border border-white/15 bg-black/60 flex items-center justify-center">
