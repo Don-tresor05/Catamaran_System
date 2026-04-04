@@ -56,7 +56,7 @@ export default function Header() {
         <div className="relative flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img
-              src="/assets/logo/logo2.png"
+              src="/assets/logo/logo2-removebg-preview.png"
               alt="Catamaran Studio"
               className="h-14 w-auto"
             />
@@ -107,42 +107,28 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden mt-4 space-y-4">
-            <Link
-              to="/"
-              className="block text-white/80 hover:text-white transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="block text-white/80 hover:text-white transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About Me
-            </Link>
-            <Link
-              to="/portfolio"
-              className="block text-white/80 hover:text-white transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Portfolio
-            </Link>
-            <Link
-              to="/services"
-              className="block text-white/80 hover:text-white transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="block text-white/80 hover:text-white transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact Me
-            </Link>
+          <div className="md:hidden mt-3 rounded-2xl border border-white/10 bg-black overflow-hidden">
+            {[['/', 'Home'], ['/about', 'About Me'], ['/portfolio', 'Portfolio'], ['/services', 'Services']].map(
+              ([to, label]) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="block border-b border-white/10 px-5 py-4 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              )
+            )}
+            <div className="p-4">
+              <Link
+                to="/contact"
+                className="block w-full rounded-xl bg-white/10 px-5 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-white/20"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact Me
+              </Link>
+            </div>
           </div>
         )}
       </nav>
