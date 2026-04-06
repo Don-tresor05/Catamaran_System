@@ -51,7 +51,7 @@ const bookingServices = [
 
 const locationRequiredServices = ['Wedding Coverage', 'Graduation Photo'];
 const today = new Date().toISOString().split('T')[0];
-const whatsappNumber = '250784809323';
+const whatsappNumber = '250788217387';
 
 export default function ContactPage() {
   const dateInputRef = useRef<HTMLInputElement>(null);
